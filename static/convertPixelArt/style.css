@@ -1,0 +1,22 @@
+li a {
+    color: green;
+}
+
+body {
+    background: white url("images/pattern3.jpg") repeat right;
+}
+
+#imageHolder{
+    float: left;
+}
+
+
+#NameHolder{
+    float: left;
+    width:200px;
+}
+
+#colorHolder{
+    width:30px;
+    float: left;
+}

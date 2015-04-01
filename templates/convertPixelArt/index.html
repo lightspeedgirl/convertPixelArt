@@ -1,0 +1,10 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'convertPixelArt/style.css' %}" />
+<h1>Pixel converter</h1>
+
+<form action='convertImages.html' method="post" enctype="multipart/form-data" >{% csrf_token %} 
+    <input type = "file" name = "imageFile" value="{{ source.imageFile }}"/>
+    <input type="submit" value="submit" />
+</form>
+

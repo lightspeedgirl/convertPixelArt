@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'convertPixelArt/style.css' %}" />
+<h1>Pixel converter</h1>
+
+<h2>This is the converted picture</h2>
+<div id = "colorHolder">
+{% for i, j in myrequestListOfColorsAndSymbols %}
+    <div style="background-color:rgb({{ i.0 }},{{ i.1 }},{{ i.2 }}); padding:3px; width: 15px; border: 1px solid black;"  > {{ j.0 }} </div>
+{% endfor %}
+</div>
+
+<div id = "NameHolder">
+{% for k in names %}
+    <div style="padding:4px"> {{ k }} </div>
+{% endfor %}
+</div>
+<div id="imageHolder">
+<img src="{% static  myrequest %} "alt='uploaded picture' />
+</div>
