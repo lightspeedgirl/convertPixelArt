@@ -22,7 +22,7 @@ def get_average_color( xy, n, image):
 # print r,g,b
 
 
-
+sizeOfPixel = 4
 originalImage = Image.open(r"C:\Users\light\Pictures\354894-95f9b-86963058--ua8674.jpg")
 funcImage = Image.open(r"C:\Users\light\Pictures\354894-95f9b-86963058--ua8674.jpg").load()
 originalImage.convert('RGB')
@@ -33,35 +33,35 @@ pixelClustersSizeMin = math.ceil(min(width, height))
 colors = []
 i = 0
 j = 0
-while(i != pixelClustersSizeMax):
-    if((i+10 > pixelClustersSizeMax)):
+while(i != pixelClustersSizeMin):
+    if((i+sizeOfPixel*2 > pixelClustersSizeMin)):
         break
-    while(j != pixelClustersSizeMin):
-        if(j+10 > pixelClustersSizeMin):
+    while(j != pixelClustersSizeMax):
+        if(j+sizeOfPixel*2 > pixelClustersSizeMax):
             break
-        r, g, b = get_average_color((i,j), 5, funcImage)
+        r, g, b = get_average_color((j,i), sizeOfPixel, funcImage)
         colors.append((math.ceil(r),math.ceil(g),math.ceil(b)))
         # print(i, j)
         # print (r,g,b)        
-        j +=5
-    i +=5
+        j +=sizeOfPixel
+    i +=sizeOfPixel
     j = 0
 # print(colors)
 
-newGeneratedImage = Image.new('RGBA', (width, height), color='#000000')
+newGeneratedImage = Image.new('RGBA', ( ( math.ceil( (width/sizeOfPixel) *(sizeOfPixel+2)) ), (math.ceil((height/sizeOfPixel)*(sizeOfPixel+2))) ), color='#000000')
 draw = ImageDraw.Draw(newGeneratedImage)
 
 ypos = 0
 xpos = 0
 currentThreadColor = 0
-for y in range(height):  
-    for x in range(width):
+for y in range(math.ceil((height-sizeOfPixel*2)/sizeOfPixel)):  
+    for x in range(math.ceil((width-sizeOfPixel*2)/sizeOfPixel)):
         if(currentThreadColor != ((len(colors))-1)):             
-            draw.rectangle([(xpos,ypos), (xpos+5,ypos+5)], fill = colors[currentThreadColor])
-            print(colors[currentThreadColor])
+            draw.rectangle([(xpos,ypos), (xpos+sizeOfPixel,ypos+sizeOfPixel)], fill = colors[currentThreadColor])
+            # print(colors[currentThreadColor])
             currentThreadColor += 1
-            xpos += 6
-    ypos += 6
+            xpos += sizeOfPixel+2
+    ypos += sizeOfPixel+2
     xpos = 0
 
 
