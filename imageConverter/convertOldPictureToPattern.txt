@@ -1,0 +1,10 @@
+
+
+from PIL import Image, ImageTk, ImageDraw, ImageFont
+
+    originalImage = Image.open(ImageName)
+    originalImage.convert('RGB')
+    pix = originalImage.load()
+    width, hight = originalImage.size 
+     #Get the RGBA Value of the a pixel of an image
+    pixelsOnImage = list(originalImage.getdata())
